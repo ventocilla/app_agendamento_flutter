@@ -1,0 +1,6 @@
+package com.gmail.ventocilla.leo.app_agendamento_flutter
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
