@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-final GoRouter router = GoRouter(
+final router = GoRouter(
   initialLocation: '/',
   debugLogDiagnostics: true,
   redirect: (context, state) {
@@ -15,7 +15,7 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: 'auth',
+      path: '/auth',
       builder: (BuildContext context, GoRouterState state) {
         return Container(color: Colors.green);
       },
