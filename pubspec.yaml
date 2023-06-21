@@ -37,6 +37,8 @@ dependencies:
   go_router: ^7.1.1
   dio: ^5.2.0+1
   pretty_dio_logger:
+  get_it:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

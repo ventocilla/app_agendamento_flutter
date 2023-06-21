@@ -1,7 +1,14 @@
 class FlavorConfig {
-  final String baseurl;
+  FlavorConfig({
+    required this.flavor,
+    required this.baseurl,
+    required this.appId,
+    required this.restKey,
+  });
   final AppFlavor flavor;
-  FlavorConfig({required this.baseurl, required this.flavor});
+  final String baseurl;
+  final String appId;
+  final String restKey;
 }
 
 enum AppFlavor { dev, prd }

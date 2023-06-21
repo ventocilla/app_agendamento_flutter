@@ -1,28 +1,24 @@
-import 'package:app_agendamento_flutter/core/helpers/token_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../core/helpers/result.dart';
 import '../models/user.dart';
 import 'results/login_failed_result.dart';
 
-class AuthDatasource {
-  final Dio _dio = Dio(BaseOptions(
-    baseUrl: 'https://parseapi.back4app.com/functions/',
-    headers: {
-      'X-Parse-Application-Id': '7dtZvj7DXFRzhcuRy5q8Y5KNTBeHJPjnKPDdB26e',
-      'X-Parse-REST-API-Key': '70dbXHQiGosPXaawxvDUYVaBudfNyrwa24M31t7Q',
-    },
-  ))
-    ..interceptors.addAll([
-      TokenInterceptor(),
-      PrettyDioLogger(requestHeader: true, requestBody: true),
-    ]);
+abstract class AuthDatasource {
+  Future<Result<LoginFailedResult, User>> login(
+      {required String email, required String password});
+}
 
+class RemoteAuthDatasource implements AuthDatasource {
+  RemoteAuthDatasource(this._dio);
+
+  final Dio _dio;
+
+  @override
   Future<Result<LoginFailedResult, User>> login(
       {required String email, required String password}) async {
     try {
-      final response = await _dio.post('v1-sign-in', data: {
+      final response = await _dio.post('/v1-sign-in', data: {
         email: email,
         password: password,
       });
